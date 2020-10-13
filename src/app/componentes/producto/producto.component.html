@@ -1,0 +1,69 @@
+<div class="texto mt-1">
+    <h1><span>Agregar productos</span></h1>
+</div>
+<div class="row">
+    <div class="col-md-5">
+
+        <!-- INPUT -->
+        <div class="card mt-2">
+            <div class="card-body">
+                <form (submit)="addDato(nuevoNombre, nuevaDescripcion, nuevoPrecio, nuevoTipo)">
+
+                    <div class="custom-file mb-3">
+                        <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                        <label class="custom-file-label" for="validatedCustomFile">Cargar imagen</label>
+                        <div class="invalid-feedback">Example invalid custom file feedback</div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Nombre del producto" #nuevoNombre required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <textarea name="descripcion" class="form-control" cols="20" rows="3" placeholder="Descripcion" #nuevaDescripcion></textarea>
+                    </div>
+
+                    <div class="form-group input-group">
+                        <span class="input-group-text">$</span>
+                        <input type="number" name="precio" class="form-control fix-rounded-right" placeholder="Precio" #nuevoPrecio>
+                    </div>
+
+                    <select class="custom-select form-control" name="tipo" placeholder="tipo" #nuevoTipo required>
+                            <option value="" disabled selected>Tipo</option>
+                            <option value="1">Consolas</option>
+                            <option value="2">Procesadores</option>
+                            <option value="3">Redes</option>
+                            <option value="4">Pantallas</option>
+                            <option value="1">Teclados</option>
+                            <option value="5">Mouse</option>
+                            <option value="6">Baterias</option>
+                            <option value="6">Almacenamiento</option>
+                            <option value="6">Laptops</option>
+                            <option value="7">Audifonos</option>
+                        </select>
+
+                    <button class="btn btn-primary btn-block mt-3">Enviar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- LISTAS -->
+
+        <div class="col mt-1">
+            <div *ngFor="let dato of datos">
+                <div class="card h-100">
+                    <img src="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ dato.nombre }}</h5>
+                        <p class="card-text">{{ dato.descripcion }}</p>
+                        <p class="card-text text-success">$ {{ dato.precio }}</p>
+                        <button class="btn btn-danger btn-sm" (click)="deleteDatos(dato)">
+                                Eliminar
+                            </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
