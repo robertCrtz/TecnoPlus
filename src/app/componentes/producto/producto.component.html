@@ -30,17 +30,17 @@
                     </div>
 
                     <select class="custom-select form-control" name="tipo" placeholder="tipo" #nuevoTipo required>
-                            <option value="" disabled selected>Tipo</option>
+                            <option value="" disabled selected>Categoria</option>
                             <option value="1">Consolas</option>
                             <option value="2">Procesadores</option>
                             <option value="3">Redes</option>
                             <option value="4">Pantallas</option>
-                            <option value="1">Teclados</option>
-                            <option value="5">Mouse</option>
-                            <option value="6">Baterias</option>
-                            <option value="6">Almacenamiento</option>
-                            <option value="6">Laptops</option>
-                            <option value="7">Audifonos</option>
+                            <option value="5">Teclados</option>
+                            <option value="6">Mouse</option>
+                            <option value="7">Baterias</option>
+                            <option value="8">Almacenamiento</option>
+                            <option value="9">Laptops</option>
+                            <option value="10">Audifonos</option>
                         </select>
 
                     <button class="btn btn-primary btn-block mt-3">Enviar</button>
@@ -60,7 +60,7 @@
                         <p class="card-text text-success">$ {{ dato.precio }}</p>
                         <button class="btn btn-danger btn-sm" (click)="deleteDatos(dato)">
                                 Eliminar
-                            </button>
+                        </button>
                     </div>
                 </div>
             </div>
