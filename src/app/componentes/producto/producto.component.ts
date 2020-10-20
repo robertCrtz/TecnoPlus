@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Dato } from '../../models/datos.model';
 import { DataService } from '../../services/data.service';
 import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'app-producto',
@@ -10,37 +9,52 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./producto.component.css']
 })
 export class ProductoComponent implements OnInit {
-  datos: Dato[];
 
-  constructor(public dataService: DataService,
-              public router: Router,
-              private auth: AuthService) { }
+  datos: any = [ {
+    nombre: '',
+    descripcion: '',
+    precio: '',
+    tipo: ''
+  }
+];
 
-  ngOnInit() {
-    this.datos = this.dataService.getDatos();
+  editarDato: any = [ {
+    nombre: '',
+    descripcion: '',
+    precio: '',
+    tipo: ''
+  }
+];
+
+  constructor(private conexion: DataService,
+              public auth: AuthService){
+                this.conexion.selectedDatos().subscribe(dato => {
+                  this.datos = dato;
+                  console.log(this.datos);
+            });
   }
 
-  addDato(nuevoNombre, nuevaDescripcion, nuevoPrecio, nuevoTipo) {
-    this.dataService.addDatos({
-      nombre: nuevoNombre.value,
-      descripcion: nuevaDescripcion.value,
-      precio: nuevoPrecio.value,
-      tipo: nuevoTipo.value
-    });
-    nuevoNombre.value = '';
-    nuevaDescripcion.value = '';
-    nuevoPrecio.value = '';
-    nuevoNombre.focus();
-    return false;
+  ngOnInit(): void {
   }
 
-  deleteDatos(dato: Dato){
-    this.dataService.deleteDatos(dato);
+  Agregar(){
+    this.conexion.agregarDatos(this.datos);
+    this.datos.nombre = '';
+    this.datos.descripcion = '';
+    this.datos.precio = '';
+    this.datos.tipo = '';
   }
 
-  salir(){
-    this.auth.logout();
-    this.router.navigateByUrl('/');
+  eliminar(dato){
+    this.conexion.eliminarDato(dato);
+  }
+
+  editar(dato){
+    this.editarDato = dato;
+  }
+
+  AgregarDatoEditado(){
+    this.conexion.EditarDato(this.editarDato);
   }
 
 }

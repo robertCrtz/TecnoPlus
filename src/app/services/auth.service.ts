@@ -10,13 +10,12 @@ export class AuthService {
 
   private url = 'https://identitytoolkit.googleapis.com/v1/';
   private apiKey = 'AIzaSyBGyw7asxdx8dNhdC7Q137bJpcAVyg7Rqc';
-
   userToken: string;
 
-  //Crear nuevos usuarios
+  // Crear nuevos usuarios
   // https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]
 
-  //Login
+  // Login
   // https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]
 
   constructor(private http: HttpClient) {
@@ -68,7 +67,7 @@ export class AuthService {
   }
 
   leerToken(){
-    if(localStorage.getItem('token')){
+    if (localStorage.getItem('token')){
       this.userToken = localStorage.getItem('token');
     } else {
       this.userToken = '';

@@ -3,8 +3,8 @@ import { UsuarioModels } from '../../models/usuario.models';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-
 import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-login',

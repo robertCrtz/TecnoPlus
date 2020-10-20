@@ -1,69 +1,88 @@
-<div class="texto mt-1">
-    <h1><span>Agregar productos</span></h1>
-</div>
-<div class="row">
-    <div class="col-md-5">
+<div class="centrar">
+    <!-- ---------------Agregar nombre ------------- -->
+    <form (ngSubmit)="Agregar()">
+        <input type="text" placeholder="Agregar nombre" name="nombre" class="form-control" [(ngModel)]="datos.nombre">
 
-        <!-- INPUT -->
-        <div class="card mt-2">
-            <div class="card-body">
-                <form (submit)="addDato(nuevoNombre, nuevaDescripcion, nuevoPrecio, nuevoTipo)">
-
-                    <div class="custom-file mb-3">
-                        <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-                        <label class="custom-file-label" for="validatedCustomFile">Cargar imagen</label>
-                        <div class="invalid-feedback">Example invalid custom file feedback</div>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nombre del producto" #nuevoNombre required>
-                    </div>
-
-
-                    <div class="form-group">
-                        <textarea name="descripcion" class="form-control" cols="20" rows="3" placeholder="Descripcion" #nuevaDescripcion></textarea>
-                    </div>
-
-                    <div class="form-group input-group">
-                        <span class="input-group-text">$</span>
-                        <input type="number" name="precio" class="form-control fix-rounded-right" placeholder="Precio" #nuevoPrecio>
-                    </div>
-
-                    <select class="custom-select form-control" name="tipo" placeholder="tipo" #nuevoTipo required>
-                            <option value="" disabled selected>Categoria</option>
-                            <option value="1">Consolas</option>
-                            <option value="2">Procesadores</option>
-                            <option value="3">Redes</option>
-                            <option value="4">Pantallas</option>
-                            <option value="5">Teclados</option>
-                            <option value="6">Mouse</option>
-                            <option value="7">Baterias</option>
-                            <option value="8">Almacenamiento</option>
-                            <option value="9">Laptops</option>
-                            <option value="10">Audifonos</option>
-                        </select>
-
-                    <button class="btn btn-primary btn-block mt-3">Enviar</button>
-                </form>
+        <!-- ---------------Agregar descripcion------------- -->
+        <form class="form-group">
+            <div class="input-group mb-3 mt-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">descripcion:</label>
+                </div>
+                <input class="custom-select" name="descripcion" [(ngModel)]="datos.descripcion">
             </div>
-        </div>
+        </form>
+        <!-- ---------------Agregar precio ------------- -->
+        <form class="form-group">
+            <div class="input-group mb-3 mt-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">precio:</label>
+                </div>
+                <input class="custom-select" name="precio" [(ngModel)]="datos.precio">
+            </div>
+        </form>
 
-        <!-- LISTAS -->
+        <!-- ---------------Agregar tipo ------------- -->
+        <form class="form-group">
+            <div class="input-group mb-3 mt-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">tipo:</label>
+                </div>
+                <input class="custom-select" name="tipo" [(ngModel)]="datos.tipo">
+            </div>
+        </form>
 
-        <div class="col mt-1">
-            <div *ngFor="let dato of datos">
-                <div class="card h-100">
-                    <img src="" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ dato.nombre }}</h5>
-                        <p class="card-text">{{ dato.descripcion }}</p>
-                        <p class="card-text text-success">$ {{ dato.precio }}</p>
-                        <button class="btn btn-danger btn-sm" (click)="deleteDatos(dato)">
-                                Eliminar
-                        </button>
-                    </div>
+
+        <button class="btn btn-primary" type="submit">Agregar</button>
+    </form>
+</div>
+
+
+
+<!-- ***********Tabla de datos registrados*********** -->
+
+<div *ngFor="let dato of datos">
+    <div class="row row-cols-1 row-cols-md-3 mt-4">
+        <div class="col mb-4">
+            <div class="card h-100">
+                <img src="../../assets/cpu.png" class="card-img-top" width="30">
+                <div class="card-body">
+                    <h5 class="card-title">{{ dato.nombre }} </h5>
+                    <p class="card-text">
+                        {{ dato.descripcion }}</p>
+                    <p class="card-text text-success">$ {{ dato.precio }} </p>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
+    <td (click)="eliminar(dato)">
+        <button class="btn btn-danger btn-sm">Borrar</button></td>
+    <td (click)="editar(dato)" data-toggle="modal" data-target="#exampleModal">
+        <button class="btn btn-warning  btn-sm">Editar</button></td>
+
+
+
+    <!-- *********** Boton para editar campo con ventana Modal *********** -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <form (ngSubmit)="AgregarDatoEditado()">
+                        <input class="form-control mt-1" placeholder="Editar nombre" name="nombre" [(ngModel)]="editarDato.nombre">
+                        <input class="form-control mt-1" name="descripcion" placeholder="Editar descripcion" [(ngModel)]="editarDato.descripcion">
+                        <input class="form-control mt-1" placeholder="Editar precio" name="precio" [(ngModel)]="editarDato.precio">
+                        <input placeholder="Editar tipo" name="tipo" class="form-control mt-1" [(ngModel)]="editarDato.tipo">
+
+                        <button class="btn btn-primary mt-3" type="submit">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

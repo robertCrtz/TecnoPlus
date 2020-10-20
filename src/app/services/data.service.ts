@@ -1,42 +1,52 @@
-import { Injectable, Injector } from '@angular/core';
-import { Dato } from '../models/datos.model';
+import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+export class Datos  {
+   datos = {
+    nombre: '',
+    descripcion: '',
+    precio: '',
+    tipo: '',
+  };
+
+}
 
 @Injectable()
-export class DataService {
-  datos: Dato[];
 
-  constructor(){
-    this.datos = [];
+export class DataService{
+  private DatosCollection: AngularFirestoreCollection<Datos>;
+  datos: Observable<Datos[]>;
+
+  private itemDoc: AngularFirestoreDocument<Datos>;
+
+  constructor(private afs: AngularFirestore){
+    this.DatosCollection = afs.collection<Datos>('datos');
+    this.datos = this.DatosCollection.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Datos;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    );
   }
 
-  getDatos(): Dato[] {
-    if (localStorage.getItem('datos') === null) {
-      return this.datos;
-    } else {
-      this.datos = JSON.parse(localStorage.getItem('datos')); // convirtiendo de texto a objeto JSON
-      return this.datos;
-    }
+  selectedDatos(){
+    return this.datos;
   }
 
-  addDatos(dato: Dato){
-    this.datos.push(dato);
-    let datos: Dato[] = [];
-    if (localStorage.getItem('datos') === null) {
-      datos.push(dato);
-      localStorage.setItem('datos', JSON.stringify(datos));
-    } else {
-      datos = JSON.parse(localStorage.getItem('datos')); 
-      datos.push(dato);
-      localStorage.setItem('datos', JSON.stringify(datos)); // convirtiendo de JSON a cadena de texto
-    }
+  agregarDatos(datos: Datos){
+    this.DatosCollection.add(datos);
   }
 
-  deleteDatos(dato: Dato){
-    for (let i = 0; i < this.datos.length; i++) {
-      if (dato == this.datos[i]) {
-        this.datos.splice(i, 1);
-        localStorage.setItem('datos', JSON.stringify(this.datos));
-      }
-    }
+  eliminarDato(dato){
+    this.itemDoc = this.afs.doc<Datos>(`datos/${dato.id}`);
+    this.itemDoc.delete();
+  }
+
+  EditarDato(dato){
+    this.itemDoc = this.afs.doc<Datos>(`datos/${dato.id}`);
+    this.itemDoc.update(dato);
   }
 }

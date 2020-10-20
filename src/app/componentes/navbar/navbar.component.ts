@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-navbar',
@@ -8,26 +9,12 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  boton: boolean;
 
   constructor(private router: Router,
-              private auth: AuthService) { }
+              private auth: AuthService,
+              public http: HttpClientModule) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
-
-  mostrar(){
-    if (localStorage.getItem('token')){
-      this.boton = true;
-    } else {
-      this.boton = false;
-    }
-  }
-
-  salir(){
-    this.auth.logout();
-    this.router.navigateByUrl('/login');
-  }
-
 
 }
