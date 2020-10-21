@@ -5,3 +5,10 @@
     justify-content: center;
     align-items: center;
 }
+
+img.card-img-top {
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin: auto;
+}

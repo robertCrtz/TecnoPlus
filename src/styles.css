@@ -32,19 +32,6 @@ i {
     margin: 0 7px;
 }
 
-#sidebarCollapse {
-    color: #fff;
-    background: transparent;
-    outline: none;
-    margin: 0 20px;
-}
-
-#sidebarCollapse:hover {
-    color: #000000;
-    background: #fff;
-    outline: none;
-}
-
 .wrapper {
     display: flex;
     width: 100%;
@@ -55,28 +42,6 @@ i {
     display: flex;
     width: 100%;
     align-items: stretch;
-}
-
-#sidebar {
-    min-width: 250px;
-    max-width: 250px;
-    margin-top: 70px;
-    background: #000000;
-    color: #fff;
-    transition: all 0.3s;
-}
-
-#sidebar.active {
-    margin-left: -250px;
-}
-
-#sidebar .sidebar-header {
-    padding: 20px;
-    background: #2f3330;
-}
-
-#sidebar ul.components {
-    padding: 20px 0px;
 }
 
 #sidebar ul p {

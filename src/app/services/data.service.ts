@@ -6,7 +6,6 @@ import { map } from 'rxjs/operators';
 export class Datos  {
    datos = {
     nombre: '',
-    descripcion: '',
     precio: '',
     tipo: '',
   };
@@ -16,37 +15,32 @@ export class Datos  {
 @Injectable()
 
 export class DataService{
-  private DatosCollection: AngularFirestoreCollection<Datos>;
-  datos: Observable<Datos[]>;
 
-  private itemDoc: AngularFirestoreDocument<Datos>;
+  constructor(
+    private firestore: AngularFirestore
+  ) { }
 
-  constructor(private afs: AngularFirestore){
-    this.DatosCollection = afs.collection<Datos>('datos');
-    this.datos = this.DatosCollection.snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as Datos;
-        const id = a.payload.doc.id;
-        return { id, ...data };
-      }))
-    );
+  /**
+   * Metodo para listar todos los productos
+   */
+  getProducto(){
+    return this.firestore.collection('productos').snapshotChanges();
   }
 
-  selectedDatos(){
-    return this.datos;
+  /**
+   * crea un producto en firebase
+   * @param producto producto a crear
+   */
+  createProducto(producto: any){
+    return this.firestore.collection('productos').add(producto);
   }
 
-  agregarDatos(datos: Datos){
-    this.DatosCollection.add(datos);
-  }
+  /**
+   * borrar un producto existente en firebase
+   * @param id id de la coleccion en firebase
+   */
+  deleteProducto(id: any){
+    return this.firestore.collection('productos').doc(id).delete();
 
-  eliminarDato(dato){
-    this.itemDoc = this.afs.doc<Datos>(`datos/${dato.id}`);
-    this.itemDoc.delete();
-  }
-
-  EditarDato(dato){
-    this.itemDoc = this.afs.doc<Datos>(`datos/${dato.id}`);
-    this.itemDoc.update(dato);
   }
 }
