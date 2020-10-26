@@ -40,17 +40,18 @@ export class LoginComponent implements OnInit {
 
     this.auth.login(this.usuario)
     .subscribe(resp => {
-      /*console.log('Te has autenticado bien!!');
-      console.log(resp);*/
       Swal.close();
-
       if (this.recordarme){
         localStorage.setItem('email', this.usuario.email);
       }
-
       this.router.navigateByUrl('/home');
+      setTimeout(function() {
+        for (let i = 0; i <= 1; i++){
+          location.reload();
+        }
+      }, 200);
     }, (err) => {
-    /*  console.log(err.error.error.message);*/
+
       Swal.fire({
         title: 'Error al autenticar',
         icon: 'error',
@@ -58,8 +59,6 @@ export class LoginComponent implements OnInit {
         allowOutsideClick: false
       });
     });
+  }
 
-  /*console.log(form);
-    console.log(this.usuario);*/
-   }
 }

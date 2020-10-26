@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UsuarioModels } from '../models/usuario.models';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +20,8 @@ export class AuthService {
   // Login
   // https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private afsAuth: AngularFireAuth) {
     this.leerToken();
    }
 

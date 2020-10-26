@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-navbar',
@@ -9,12 +8,30 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  estaLogueado = false;
 
-  constructor(private router: Router,
-              private auth: AuthService,
-              public http: HttpClientModule) { }
+  constructor(private auth: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
+    this.getCurrentUser();
+  }
+
+  salir(){
+    for (let i = 0; i < 1; i++){
+      location.reload();
+    }
+    this.auth.logout();
+  }
+
+  getCurrentUser(){
+    if (this.auth.estaAutenticado()) {
+      this.estaLogueado = true;
+      console.log(this.estaLogueado);
+    } else {
+      console.log(this.estaLogueado);
+      this.estaLogueado = false;
+    }
   }
 
 }

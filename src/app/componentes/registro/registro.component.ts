@@ -54,9 +54,5 @@ export class RegistroComponent implements OnInit {
           allowOutsideClick: false
         });
       });
-
-    /*console.log("Formulario enviado");
-      console.log(this.usuario);
-      console.log(form);*/
   }
 }
