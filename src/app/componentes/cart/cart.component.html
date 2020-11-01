@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <!-- List of Products -->
+    </div>
+    <table class="table table-borderless">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Producto</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of cartProducts">
+            <tr>
+                <td>{{ item.titulo }}</td>
+                <td>$ {{ item.precio }}</td>
+                <td><button (click)="removeCartProduct(item)" type="button" class="btn btn-danger">Eliminar</button></td>
+            </tr>
+        </tbody>
+        <th>Total: </th>
+    </table>
+</div>

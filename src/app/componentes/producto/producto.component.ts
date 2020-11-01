@@ -3,6 +3,7 @@ import { DataService } from '../../services/data.service';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { CollectionReference } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-producto',
@@ -11,7 +12,6 @@ import Swal from 'sweetalert2';
 })
 export class ProductoComponent implements OnInit {
 
-  closeResult = '';
   productoForm: FormGroup;
   idFirabaseActualizar: string;
 
@@ -40,7 +40,7 @@ export class ProductoComponent implements OnInit {
           tipo: e.payload.doc.data().tipo,
           idFirebase: e.payload.doc.id
         }
-      })
+      });
     },
       error => {
         console.error(error);
@@ -76,7 +76,24 @@ export class ProductoComponent implements OnInit {
         text: error.error.message,
         allowOutsideClick: false
       });
-    })
+    });
+  }
+
+
+  addToCart(item: any): void {
+    Swal.fire({
+      allowOutsideClick: false,
+      icon: 'success',
+      title: 'Producto agregado al carrito',
+      timer: 750,
+      showConfirmButton: false,
+    });
+    const a: CollectionReference[] = JSON.parse(localStorage.getItem('productos')) || [];
+    a.push(item);
+
+    setTimeout(() => {
+      localStorage.setItem('productos', JSON.stringify(a));
+    }, 500);
   }
 
 }

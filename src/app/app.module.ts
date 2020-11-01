@@ -18,6 +18,7 @@ import { ProductoComponent } from './componentes/producto/producto.component';
 import { SidebarComponent } from './componentes/sidebar/sidebar.component';
 
 import { DataService } from './services/data.service';
+import { CartComponent } from './componentes/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DataService } from './services/data.service';
     LoginComponent,
     RegistroComponent,
     ProductoComponent,
-    SidebarComponent
+    SidebarComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

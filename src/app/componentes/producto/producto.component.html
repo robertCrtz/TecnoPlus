@@ -44,7 +44,7 @@
                     </select>
                 </div>
             </form>
-            <button type="button" class="btn btn-outline-dark ml-1 mt-1" (click)="guardarProducto()">Guardar</button>
+            <button type="button" class="btn btn-dark ml-1 mt-1" (click)="guardarProducto()">Guardar</button>
         </div>
     </form>
 </div>
@@ -60,7 +60,7 @@
                 <p class="card-text">{{item.titulo}}</p>
                 <p class="card-text text-success">$ {{item.precio}}</p>
                 <div class=" d-flex flex-row-reverse">
-                    <button class="btn btn-primary mx-1"><i class="fa fa-shopping-cart"> Agregar</i></button>
+                    <button (click)="addToCart(item)" class="btn btn-primary mx-1"><i class="fa fa-shopping-cart"> Agregar</i></button>
                     <button type="button" class="btn btn-danger" (click)="eliminar(item)">Eliminar</button>
                 </div>
             </div>

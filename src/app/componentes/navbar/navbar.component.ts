@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,8 @@ export class NavbarComponent implements OnInit {
   estaLogueado = false;
 
   constructor(private auth: AuthService,
-              private router: Router) { }
+              private router: Router,
+              public datos: DataService) { }
 
   ngOnInit() {
     this.getCurrentUser();
