@@ -19,6 +19,7 @@ import { SidebarComponent } from './componentes/sidebar/sidebar.component';
 
 import { DataService } from './services/data.service';
 import { CartComponent } from './componentes/cart/cart.component';
+import { ComprasComponent } from './componentes/compras/compras.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CartComponent } from './componentes/cart/cart.component';
     RegistroComponent,
     ProductoComponent,
     SidebarComponent,
-    CartComponent
+    CartComponent,
+    ComprasComponent
   ],
   imports: [
     BrowserModule,

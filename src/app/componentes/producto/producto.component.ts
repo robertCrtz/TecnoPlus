@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { isNullOrUndefined } from 'util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import Swal from 'sweetalert2';
 import { CollectionReference } from '@angular/fire/firestore';
+import { Productos } from '../../models/producto.models';
+import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-producto',
@@ -14,12 +16,17 @@ export class ProductoComponent implements OnInit {
 
   productoForm: FormGroup;
   idFirabaseActualizar: string;
+  product: Productos[];
 
   constructor(public fb: FormBuilder,
-              private datos: DataService) { }
+              private datos: DataService,
+              private route: ActivatedRoute) {}
 
   config: any;
-  collection = { count: 0, data: [] };
+  collection = {
+    count: 0,
+    data: []
+  };
 
   ngOnInit(): void {
     this.idFirabaseActualizar = '';
@@ -28,6 +35,7 @@ export class ProductoComponent implements OnInit {
     this.productoForm = this.fb.group({
       titulo: ['', Validators.required],
       precio: ['', Validators.required],
+      descripcion: ['', Validators.required],
       tipo: ['', Validators.required],
     });
 
@@ -38,6 +46,7 @@ export class ProductoComponent implements OnInit {
           titulo: e.payload.doc.data().titulo,
           precio: e.payload.doc.data().precio,
           tipo: e.payload.doc.data().tipo,
+          descripcion: e.payload.doc.data().descripcion,
           idFirebase: e.payload.doc.id
         }
       });
@@ -67,8 +76,10 @@ export class ProductoComponent implements OnInit {
       timer: 750,
       showConfirmButton: false,
     });
+
     this.datos.createProducto(this.productoForm.value).then(resp => {
       this.productoForm.reset();
+
     }).catch(error => {
       Swal.fire({
         title: 'Error al guardar',
@@ -88,7 +99,7 @@ export class ProductoComponent implements OnInit {
       timer: 750,
       showConfirmButton: false,
     });
-    const a: CollectionReference[] = JSON.parse(localStorage.getItem('productos')) || [];
+    const a: Productos[] = JSON.parse(localStorage.getItem('productos')) || [];
     a.push(item);
 
     setTimeout(() => {

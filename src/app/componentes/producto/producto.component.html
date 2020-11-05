@@ -10,7 +10,7 @@
                 <div class="form-group ">
                     <label>Imagen</label>
                     <div class="custom-file mb-3">
-                        <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                        <input type="file" class="custom-file-input" id="validatedCustomFile">
                         <label class="custom-file-label" for="validatedCustomFile">Seleccionar imagen</label>
                         <div class="invalid-feedback">Example invalid custom file feedback</div>
                     </div>
@@ -18,28 +18,36 @@
                 <!--TITULO-->
                 <div class="form-group">
                     <label>Titulo</label>
-                    <input type="text" formControlName="titulo" class="form-control ">
+                    <input type="text" formControlName="titulo" class="form-control">
+                </div>
+                <!--DESCRIPCION-->
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <input type="text" formControlName="descripcion" class="form-control">
                 </div>
                 <!--PRECIO-->
                 <div class="form-group">
                     <label>Precio</label>
-                    <input type="number" formControlName="precio" class="form-control ">
+                    <input type="number" formControlName="precio" class="form-control">
                 </div>
                 <!--TIPO DE PRODUCTO-->
                 <div class="form-group">
                     <label>Tipo</label>
                     <select type="text" class="form-control custom-select" formControlName="tipo">
                         <optgroup disable selected label="Tipo de producto">
-                          <option value="1">Consolas</option>
-                          <option value="2">Procesadores</option>
-                          <option value="3">Redes</option>
-                          <option value="4">Pantallas</option>
-                          <option value="5">Teclados</option>
-                          <option value="6">Mouse</option>
-                          <option value="7">Baterías</option>
-                          <option value="8">Almacenamiento</option>
-                          <option value="9">Laptops</option>
-                          <option value="10">Audifonos</option>
+                          <option value="Videojuegos">Videojuegos</option>
+                          <option value="Procesadores">Procesadores</option>
+                          <option value="Redes">Redes</option>
+                          <option value="Pantallas">Pantallas</option>
+                          <option value="Teclados">Teclados</option>
+                          <option value="Mouse">Mouse</option>
+                          <option value="Baterías">Baterías</option>
+                          <option value="Almacenamiento">Almacenamiento</option>
+                          <option value="Laptops">Laptops</option>
+                          <option value="Audifonos">Audifonos</option>
+                          <option value="Descuentos">Descuentos</option>
+                          <option value="Destacados">Destacados</option>
+                          <option value="Populares">Populares</option>
                         </optgroup>
                     </select>
                 </div>
@@ -55,13 +63,12 @@
 <div class="container">
     <div class="card-deck mt-5">
         <div class="card" *ngFor="let item of collection.data">
-            <img src="../../assets/3090.png " class="card-img-top" alt="... ">
             <div class="card-body">
                 <p class="card-text">{{item.titulo}}</p>
                 <p class="card-text text-success">$ {{item.precio}}</p>
                 <div class=" d-flex flex-row-reverse">
-                    <button (click)="addToCart(item)" class="btn btn-primary mx-1"><i class="fa fa-shopping-cart"> Agregar</i></button>
-                    <button type="button" class="btn btn-danger" (click)="eliminar(item)">Eliminar</button>
+                    <button (click)="addToCart(item)" class="btn btn-primary btn-sm mx-1"><i class="fa fa-shopping-cart"> Agregar</i></button>
+                    <button type="button" class="btn btn-danger btn-sm" (click)="eliminar(item)">Eliminar</button>
                 </div>
             </div>
         </div>

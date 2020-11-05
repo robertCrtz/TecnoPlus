@@ -14,9 +14,14 @@
             <tr>
                 <td>{{ item.titulo }}</td>
                 <td>$ {{ item.precio }}</td>
-                <td><button (click)="removeCartProduct(item)" type="button" class="btn btn-danger">Eliminar</button></td>
+                <td><button (click)="removeCartProduct(item)" type="button" class="btn btn-danger btn-sm">Eliminar</button></td>
             </tr>
         </tbody>
-        <th>Total: </th>
+        <tr class="table-primary">
+            <b><td>Total:</td></b>
+            <td>$ {{ totalValue }}</td>
+            <td><button (click)="accederCompra()" class="btn btn-primary">Comprar</button></td>
+        </tr>
+
     </table>
 </div>
