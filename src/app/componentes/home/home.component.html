@@ -47,18 +47,16 @@
     </div>
 
     <div class="card-deck mt-5">
-        <div class="card" *ngFor="let item of collection.data">
-            <div *ngIf="item.tipo === 'Descuentos'">
-                <img src="../../assets/i9-10000.png" class="card-img-top" alt="... ">
+        <div class="card" *ngFor="let item of destacados">
+            <img src="{{item.src}}" class="card-img-top" alt="... ">
+            <div class="card-body">
+                <p class="card-text">{{item.titulo}}</p>
+                <p class="card-text text-success ">$ {{item.precio}}</p>
                 <div class="card-body">
-                    <p class="card-text">{{item.titulo}}</p>
-                    <p class="card-text text-success ">$ {{item.precio}}</p>
-                    <div class="card-body">
-                        <div class=" d-flex flex-row-reverse">
-                            <button (click)="addToCart(item)" class="btn btn-primary">
+                    <div class=" d-flex flex-row-reverse">
+                        <button (click)="addToCart(item)" class="btn btn-primary">
                                 <i class="fa fa-shopping-cart"> Agregar</i>
                             </button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -71,38 +69,16 @@
 
 
     <div class="card-deck mt-5 ">
-        <div class="card ">
-            <img src="../../assets/MSI MAG.png " class="card-img-top " alt="... ">
+        <div class="card" *ngFor="let item of promociones">
+            <img src="{{item.src}}" class="card-img-top " alt="... ">
             <div class="card-body ">
-                <p class="card-text "> MSI MAG X570 TOMAHAWK WIFI</p>
-                <p class="card-text text-danger "><del> $260.00  </del> </p>
-                <p class="card-text text-success "> $220.00</p>
+                <p class="card-text ">{{item.titulo}}</p>
+                <p class="card-text text-danger "><del> $ {{item.precioAntes}}</del> </p>
+                <p class="card-text text-success "> $ {{item.precio}}</p>
                 <div class=" d-flex flex-row-reverse">
-                    <button class="btn btn-primary"><i class="fa fa-shopping-cart"> Agregar</i></button>
-                </div>
-            </div>
-        </div>
-
-        <div class="card ">
-            <img src="../../assets/baracuda.png " class="card-img-top " alt="... ">
-            <div class="card-body ">
-                <p class="card-text ">Seagate BarraCuda Q1 SSD 480GB SATA 3</p>
-                <p class="card-text text-danger "><del> $70.00  </del> </p>
-                <p class="card-text text-success "> $50.00</p>
-                <div class=" d-flex flex-row-reverse">
-                    <button class="btn btn-primary"><i class="fa fa-shopping-cart"> Agregar</i></button>
-                </div>
-            </div>
-        </div>
-
-        <div class="card ">
-            <img src="../../assets/case.png " class="card-img-top " alt="... ">
-            <div class="card-body ">
-                <p class="card-text ">Thermaltake AH T600 Cristal Templado USB 3.0</p>
-                <p class="card-text text-danger "><del> $270.00  </del> </p>
-                <p class="card-text text-success "> $210.00</p>
-                <div class=" d-flex flex-row-reverse">
-                    <button class="btn btn-primary"><i class="fa fa-shopping-cart"> Agregar</i></button>
+                    <button (click)="addToCart(item)" class="btn btn-primary">
+                        <i class="fa fa-shopping-cart"> Agregar</i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -113,35 +89,15 @@
     </div>
 
     <div class="card-deck mt-5 ">
-        <div class="card ">
-            <img src="../../assets/3090.png " class="card-img-top " alt="... ">
+        <div class="card" *ngFor=" let item of populares">
+            <img src="{{item.src}}" class="card-img-top " alt="... ">
             <div class="card-body ">
-                <p class="card-text ">Zotac GAMING GeForce RTX 3090 Trinity 24GB GDDR6X</p>
-                <p class="card-text text-success ">$1759.99</p>
+                <p class="card-text ">{{item.titulo}}</p>
+                <p class="card-text text-success ">$ {{item.precio}}</p>
                 <div class=" d-flex flex-row-reverse">
-                    <button class="btn btn-primary"><i class="fa fa-shopping-cart"> Agregar</i></button>
-                </div>
-            </div>
-        </div>
-
-        <div class="card ">
-            <img src="../../assets/avenger.png " class="card-img-top " alt="... ">
-            <div class="card-body ">
-                <p class="card-text ">Intel Core™ i9-10900K 3.70Ghz Avengers Edition</p>
-                <p class="card-text text-success ">$699.99</p>
-                <div class=" d-flex flex-row-reverse">
-                    <button class="btn btn-primary"><i class="fa fa-shopping-cart"> Agregar</i></button>
-                </div>
-            </div>
-        </div>
-
-        <div class="card ">
-            <img src="../../assets/asus.png " class="card-img-top " alt="... ">
-            <div class="card-body ">
-                <p class="card-text ">Asus ROG Strix G17 G712LV-H7077 Intel Core i7-10750H/32GB/1TB SSD/RTX 2060/17.3"</p>
-                <p class="card-text text-success">$1795.00</p>
-                <div class=" d-flex flex-row-reverse">
-                    <button class="btn btn-primary"><i class="fa fa-shopping-cart"> Agregar</i></button>
+                    <button (click)="addToCart(item)" class="btn btn-primary">
+                        <i class="fa fa-shopping-cart"> Agregar</i>
+                    </button>
                 </div>
             </div>
         </div>

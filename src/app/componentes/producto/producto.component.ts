@@ -6,6 +6,7 @@ import { CollectionReference } from '@angular/fire/firestore';
 import { Productos } from '../../models/producto.models';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { FileI } from '../../models/file.interface';
 
 @Component({
   selector: 'app-producto',
@@ -13,7 +14,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./producto.component.css']
 })
 export class ProductoComponent implements OnInit {
-
+  private image: any;
   productoForm: FormGroup;
   idFirabaseActualizar: string;
   product: Productos[];
@@ -37,6 +38,7 @@ export class ProductoComponent implements OnInit {
       precio: ['', Validators.required],
       descripcion: ['', Validators.required],
       tipo: ['', Validators.required],
+      imagePost: ['', Validators.required],
     });
 
     // cargando todos los productos de firebase
@@ -47,8 +49,9 @@ export class ProductoComponent implements OnInit {
           precio: e.payload.doc.data().precio,
           tipo: e.payload.doc.data().tipo,
           descripcion: e.payload.doc.data().descripcion,
+          imagePost: e.payload.doc.data().imagePost,
           idFirebase: e.payload.doc.id
-        }
+        };
       });
     },
       error => {
@@ -76,10 +79,8 @@ export class ProductoComponent implements OnInit {
       timer: 750,
       showConfirmButton: false,
     });
-
     this.datos.createProducto(this.productoForm.value).then(resp => {
       this.productoForm.reset();
-
     }).catch(error => {
       Swal.fire({
         title: 'Error al guardar',
@@ -89,7 +90,6 @@ export class ProductoComponent implements OnInit {
       });
     });
   }
-
 
   addToCart(item: any): void {
     Swal.fire({
@@ -106,5 +106,4 @@ export class ProductoComponent implements OnInit {
       localStorage.setItem('productos', JSON.stringify(a));
     }, 500);
   }
-
 }

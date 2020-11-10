@@ -6,15 +6,6 @@
     <form>
         <div class="form-group">
             <form [formGroup]="productoForm">
-                <!--CARGAR IMAGEN-->
-                <div class="form-group ">
-                    <label>Imagen</label>
-                    <div class="custom-file mb-3">
-                        <input type="file" class="custom-file-input" id="validatedCustomFile">
-                        <label class="custom-file-label" for="validatedCustomFile">Seleccionar imagen</label>
-                        <div class="invalid-feedback">Example invalid custom file feedback</div>
-                    </div>
-                </div>
                 <!--TITULO-->
                 <div class="form-group">
                     <label>Titulo</label>
@@ -63,6 +54,7 @@
 <div class="container">
     <div class="card-deck mt-5">
         <div class="card" *ngFor="let item of collection.data">
+            <img src="" class="card-img-top" alt="... ">
             <div class="card-body">
                 <p class="card-text">{{item.titulo}}</p>
                 <p class="card-text text-success">$ {{item.precio}}</p>

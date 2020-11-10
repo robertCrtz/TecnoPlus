@@ -3,8 +3,8 @@
         <div class="wrap-login100 p-t-50 p-b-90">
             <form (ngSubmit)="onLogin(loginForm)" class="login100-form validate-form flex-sb flex-w" #loginForm="ngForm">
 
-                <span class="mt-4 text-white">
-                    <h1>Iniciar sesión</h1>
+                <span class="mt-4">
+                    <h1 class="text-white">Iniciar sesión</h1>
                 </span>
 
                 <span class="text-danger" *ngIf="loginForm.submitted && loginForm.controls['email'].errors">

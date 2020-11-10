@@ -6,6 +6,7 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,6 +42,7 @@ import { ComprasComponent } from './componentes/compras/compras.component';
     FormsModule,
     HttpClientModule,
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [DataService],

@@ -3,7 +3,7 @@
         <form (ngSubmit)="onSubmit(registroForm)" #registroForm="ngForm">
 
             <span class="text-white p-b-51">
-                <h1>Crear nueva cuenta</h1>
+                <h1 class="text-white">Crear nueva cuenta</h1>
                 </span>
 
             <span class="text-danger animated fadeIn" *ngIf="registroForm.submitted && registroForm.controls['email'].errors">

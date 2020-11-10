@@ -7,7 +7,7 @@
 }
 
 .blue {
-    background: #202020;
+    background: #242a33;
     color: #fff;
 }
 
@@ -36,12 +36,7 @@ i {
     display: flex;
     width: 100%;
     align-items: stretch;
-}
-
-.wrapper {
-    display: flex;
-    width: 100%;
-    align-items: stretch;
+    bottom: 0%;
 }
 
 #sidebar ul p {

@@ -4,8 +4,10 @@ import { AngularFireObject, AngularFireList } from '@angular/fire/database';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, CollectionReference } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 import { Productos } from '../models/producto.models';
+import { FileI } from '../models/file.interface';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 
 @Injectable()
@@ -19,33 +21,29 @@ export class DataService{
     data: []
   };
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(private firestore: AngularFirestore,
+              private storage: AngularFireStorage) {
     this.DatosCollection = this.firestore.collection<Productos>('productos');
-    this.product = this.DatosCollection.snapshotChanges().pipe(
-      map(actions => actions.map(e => {
-          return {
-            titulo: e.payload.doc.data().titulo,
-            precio: e.payload.doc.data().precio,
-            tipo: e.payload.doc.data().tipo,
-            descripcion: e.payload.doc.data().descripcion,
-            idFirebase: e.payload.doc.id
-          }
-        }))
+  }
+
+  public getAllProductos(): Observable<Productos[]> {
+    return this.DatosCollection.snapshotChanges()
+    .pipe(
+      map(actions =>
+        actions.map(e => {
+          const data = e.payload.doc.data() as Productos;
+          const id = e.payload.doc.id;
+          return { id, ...data };
+      }))
     );
   }
 
-
-  // Metodo para listar todos los productos
   getProducto(){
     return this.firestore.collection('productos').snapshotChanges();
   }
 
-  /**
-   * crea un producto en firebase
-   * @param producto producto a crear
-   */
-  createProducto(producto: Productos){
-    return this.firestore.collection('productos').add(producto);
+  createProducto(product: Productos){
+    return this.firestore.collection('productos').add(product);
   }
 
   /**
