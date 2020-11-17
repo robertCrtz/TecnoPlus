@@ -26,18 +26,6 @@ export class DataService{
     this.DatosCollection = this.firestore.collection<Productos>('productos');
   }
 
-  public getAllProductos(): Observable<Productos[]> {
-    return this.DatosCollection.snapshotChanges()
-    .pipe(
-      map(actions =>
-        actions.map(e => {
-          const data = e.payload.doc.data() as Productos;
-          const id = e.payload.doc.id;
-          return { id, ...data };
-      }))
-    );
-  }
-
   getProducto(){
     return this.firestore.collection('productos').snapshotChanges();
   }

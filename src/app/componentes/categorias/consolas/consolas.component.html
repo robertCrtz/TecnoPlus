@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="alert alert-primary mt-2">
+        <b>CONSOLAS DE VIDEOJUEGOS</b>
+    </div>
+
+
+    <div class="card-deck mt-5 ">
+        <div class="card" *ngFor="let item of consolas">
+            <img src="{{item.src}}" class="card-img-top " alt="... ">
+            <div class="card-body ">
+                <p class="card-text ">{{item.titulo}}</p>
+                <p class="card-text text-success "> $ {{item.precio}}</p>
+                <div class=" d-flex flex-row-reverse">
+                    <button (click)="addToCart(item)" class="btn btn-primary">
+                        <i class="fa fa-shopping-cart"> Agregar</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-deck mt-5 ">
+        <div class="card" *ngFor="let item of consolas2">
+            <img src="{{item.src}}" class="card-img-top " alt="... ">
+            <div class="card-body ">
+                <p class="card-text ">{{item.titulo}}</p>
+                <p class="card-text text-success "> $ {{item.precio}}</p>
+                <div class=" d-flex flex-row-reverse">
+                    <button (click)="addToCart(item)" class="btn btn-primary">
+                        <i class="fa fa-shopping-cart"> Agregar</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

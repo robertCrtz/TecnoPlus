@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { UsuarioModels } from '../../models/usuario.models';
 
 @Component({
   selector: 'app-compras',
@@ -8,9 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComprasComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
   }
+
 
 }

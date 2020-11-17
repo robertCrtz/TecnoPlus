@@ -51,6 +51,7 @@ export class AuthService {
     const authData = {
       email: usuario.email,
       password: usuario.password,
+      nombre: usuario.nombre,
       returnSecureToken: true
     };
     return this.http.post(

@@ -15,24 +15,25 @@ export class HomeComponent implements OnInit {
   constructor(public router: Router,
               public auth: AuthService,
               public datos: DataService) { }
-  mostrarD = false;
 
-  destacados: Array<any> = [
-    {id: 1, titulo: 'BatGirl', precio: '250',  src: '../../assets/3090.png'},
-    {id: 2, titulo: 'Intel Core™ i9-10900K 3.70Ghz Avengers Edition',   precio: '54',   src: '../../assets/avenger.png '},
-    {id: 3, titulo: 'Asus ROG Strix G17 G712LV-H7077 Intel Core i7-10750H/32GB/1TB SSD/RTX 2060/17.3"',  precio: '365',  src: '../../assets/asus.png'},
+  product: Productos;
+
+  destacados: Productos[] = [
+    {id: 1, titulo: 'BatGirl',  descripcion: '', precio: 250,  src: '../../assets/3090.png'},
+    {id: 2, titulo: 'Intel Core™ i9-10900K 3.70Ghz Avengers Edition',  descripcion: '',   precio: 54,   src: '../../assets/avenger.png '},
+    {id: 3, titulo: 'Asus ROG Strix G17 G712LV-H7077 Intel Core i7',  descripcion: 'SSD/RTX 2060/17.3"',  precio: 365,  src: '../../assets/asus.png'},
     ];
 
-  promociones: Array<any> = [
-    {id: 1, titulo: 'Superman', precio: '250',  precioAntes: '354',  src: '../../assets/MSI MAG.png'},
-    {id: 2, titulo: 'Batman',   precio: '54',   precioAntes: '250',  src: '../../assets/baracuda.png'},
-    {id: 3, titulo: 'BatGirl',  precio: '365',  precioAntes: '550',  src: '../../assets/case.png'},
+  promociones: Productos[] = [
+    {id: 4, titulo: 'Superman',  descripcion: '', precio: 250,  precioAntes: 354,  src: '../../assets/MSI MAG.png'},
+    {id: 5, titulo: 'Batman',    descripcion: '',   precio: 54,   precioAntes: 250,  src: '../../assets/baracuda.png'},
+    {id: 6, titulo: 'BatGirl',   descripcion: '',  precio: 365,  precioAntes: 550,  src: '../../assets/case.png'},
   ];
 
-  populares: Array<any> = [
-    {id: 1, titulo: 'BatGirl', precio: '250',  src: '../../assets/3090.png'},
-    {id: 2, titulo: 'Intel Core™ i9-10900K 3.70Ghz Avengers Edition',   precio: '54',   src: '../../assets/avenger.png '},
-    {id: 3, titulo: 'Asus ROG Strix G17 G712LV-H7077 Intel Core i7-10750H/32GB/1TB SSD/RTX 2060/17.3"',  precio: '365',  src: '../../assets/asus.png'},
+  populares: Productos[] = [
+    {id: 7, titulo: 'BatGirl', descripcion: '', precio: 250,  src: '../../assets/3090.png'},
+    {id: 8, titulo: 'Intel Core™ i9-10900K 3.70Ghz Avengers Edition', descripcion: '',   precio: 54,   src: '../../assets/avenger.png '},
+    {id: 9, titulo: 'Asus ROG Strix G17 G712LV-H7077 Intel Core i7-10750H/32GB/1TB', descripcion: ' SSD/RTX 2060/17.3"',  precio: 365,  src: '../../assets/asus.png'},
   ];
 
   ngOnInit() {
@@ -46,13 +47,8 @@ export class HomeComponent implements OnInit {
       timer: 750,
       showConfirmButton: false,
     });
-    // tslint:disable-next-line: one-variable-per-declaration
-    const a: destacados = JSON.parse(localStorage.getItem('productos')) || [];
+    const a: Productos[] = JSON.parse(localStorage.getItem('productos')) || [];
     a.push(item);
-    const b: promociones = JSON.parse(localStorage.getItem('productos')) || [];
-    b.push(item);
-    const c: populares = JSON.parse(localStorage.getItem('productos')) || [];
-    c.push(item);
 
     setTimeout(() => {
       localStorage.setItem('productos', JSON.stringify(a));

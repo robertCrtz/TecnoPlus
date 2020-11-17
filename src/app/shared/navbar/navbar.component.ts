@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { DataService } from '../../services/data.service';
+import { UsuarioModels } from '../../models/usuario.models';
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +11,7 @@ import { DataService } from '../../services/data.service';
 })
 export class NavbarComponent implements OnInit {
   estaLogueado = false;
+  nombre: string;
 
   constructor(private auth: AuthService,
               private router: Router,
@@ -35,5 +37,4 @@ export class NavbarComponent implements OnInit {
       this.estaLogueado = false;
     }
   }
-
 }
