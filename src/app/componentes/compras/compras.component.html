@@ -31,6 +31,68 @@
             <div *ngIf="submitted && f.direccion.invalid" class="text-danger animated fadeInDown">Por favor, ingrese su dirección</div>
         </div>
 
+        <div class="form-group">
+            <input formControlName="celular" type="number" class="form-control" placeholder="Celular" minlength="8" required>
+            <div *ngIf="submitted && f.celular.invalid" class="text-danger animated fadeInDown">Por favor, ingrese su número de celular</div>
+        </div>
+
+        <div class="form-group">
+            <label for="validationServer04">Método de pago</label><br>
+            <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" id="materialInline1" name="inlineMaterialRadiosExample" value="1">
+                <label class="form-check-label" for="materialInline1">Efectivo</label>
+            </div>
+
+            <!-- Material inline 2 -->
+            <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" id="materialInline2" name="inlineMaterialRadiosExample" value="2">
+                <label class="form-check-label" for="materialInline2">Tarjeta</label>
+            </div>
+        </div>
+
+        <!-- TARJETAS -->
+        <form action="#" class="credit-card-div">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" placeholder="Ingrese su número de tarjeta" />
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <span class="help-block text-muted small-font"> Mes de vencimiento</span>
+                            <input type="text" class="form-control" placeholder="MM" />
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <span class="help-block text-muted small-font">  Año de vencimiento</span>
+                            <input type="text" class="form-control" placeholder="YY" />
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <span class="help-block text-muted small-font"> CCV</span>
+                            <input type="text" class="form-control" placeholder="CCV" />
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <img src="../../../assets/tarjetab.jpg">
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-12 pad-adjust">
+
+                            <input type="text" class="form-control" placeholder="Nombre de titular" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 pad-adjust">
+                            <div class="checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
         <div class="mt-3">
             <input class="ml-1" id="ckb1" type="checkbox" name="remember-me" formControlName="checkbox">
             <label class="ml-2" for="ckb1">

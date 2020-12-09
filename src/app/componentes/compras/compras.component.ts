@@ -6,8 +6,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-compras',
   templateUrl: './compras.component.html',
-  styles: [
-  ]
+  styleUrls: ['./compras.component.css']
 })
 export class ComprasComponent implements OnInit {
   comprar: FormGroup;
@@ -23,6 +22,7 @@ export class ComprasComponent implements OnInit {
       apellido: ['', Validators.required],
       ciudad: ['', Validators.required],
       direccion: ['', Validators.required],
+      celular: ['', Validators.required],
       checkbox: ['', Validators.required],
     })
   }

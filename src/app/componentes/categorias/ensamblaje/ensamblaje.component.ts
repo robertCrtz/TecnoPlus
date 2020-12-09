@@ -18,40 +18,37 @@ export class EnsamblajeComponent implements OnInit {
 
 PCform: FormGroup;
 procesadores = [
-  {title: 'SSD 156 gb', price: 234},
-  {title: 'fdf celeron', price: 456},
-  {title: 'SSD sata 234gb', price: 478},
-  {title: 'Intel fdf', price: 96}
+  {title: 'Ryzen 5 - 1600', price: 178},
+  {title: 'Intel Core i5-10600K 4.10 GHz', price: 300},
+  {title: 'AMD Ryzen 9 3900X 3.8 GHz BOX', price: 489},
 ];
 motherboards = [
-  {title: 'SSD 156 gb', price: 234},
-  {title: 'fdf celeron', price: 456},
-  {title: 'SSD sata 234gb', price: 478},
-  {title: 'Intel fdf', price: 96}
+  {title: 'Asus TUF Gaming X570-Plus', price: 200},
+  {title: 'Gigabyte B550M DS3H', price: 99},
+  {title: 'Gigabyte B450M S2H', price: 65.99},
 ];
 RAMs = [
-  {title: 'SSD 156 gb', price: 234},
-  {title: 'fdf celeron', price: 456},
-  {title: 'SSD sata 234gb', price: 478},
-  {title: 'Intel fdf', price: 96}
+  {title: 'G.Skill Trident Z RGB DDR4 3200 PC4-25600 16GB 2x8GB CL16', price: 90},
+  {title: 'PC-25600 16GB 2x8GB CL16', price: 65},
+  {title: 'Corsair Vengeance RGB Pro Optimizado AMD DDR4 3200 16GB 2x8GB CL16', price: 90},
 ];
 HDD = [
-  {title: 'SSD 156 gb', price: 234},
-  {title: 'fdf celeron', price: 456},
-  {title: 'SSD sata 234gb', price: 478},
-  {title: 'Intel fdf', price: 96}
+  {title: 'Kingston HDD 500GB SATA 3', price: 25},
+  {title: 'Seagate BarraCuda 3.5" 1TB SATA 3', price: 35},
+  {title: 'Seagate BarraCuda 3.5" 2TB SATA 3', price: 55},
+  {title: 'Seagate BarraCuda 3.5" 4TB SATA 3', price: 120}
 ];
 SSD = [
-  {title: 'SSD 156 gb', price: 234},
-  {title: 'fdf celeron', price: 456},
-  {title: 'SSD sata 234gb', price: 478},
-  {title: 'Intel fdf', price: 96}
+  {title: 'Nfortec Alcyon X 256GB SSD M.2 NVMe', price: 75},
+  {title: 'Kingston A400 SSD 480GB', price: 50},
+  {title: 'Samsung 970 EVO Plus 500GB SSD NVMe M.2', price: 110},
+  {title: 'Samsung 970 EVO Plus 1TB SSD NVMe M.2', price: 210}
 ];
 GPU = [
-  {title: 'SSD 156 gb', price: 234},
-  {title: 'fdf celeron', price: 456},
-  {title: 'SSD sata 234gb', price: 478},
-  {title: 'NVIDIA 3090', price: 296}
+  {title: 'ASUS Cerberus GeForce GTX 1050 Ti OC Edition 4GB GDDR5', price: 134.99},
+  {title: 'Sapphire Nitro+ Radeon RX 5700 XT 8GB GDDR', price: 490},
+  {title: 'Sapphire Nitro+ Radeon RX 5500 XT 8GB GDDR6', price: 256},
+  {title: 'XFX AMD Radeon RX 5600 XT 14Gbps 6GB GDDR6', price: 340}
 ];
 
 ngOnInit() {
