@@ -1,1 +1,36 @@
-<p>pantallas works!</p>
+<div class="container">
+    <div class="alert alert-primary mt-0">
+        <b>PANTALLAS</b>
+    </div>
+
+    <div class="card-deck mt-5 ">
+        <div class="card" *ngFor="let item of pantallas">
+            <img src="{{item.src}}" class="card-img-top " alt="... ">
+            <div class="card-body ">
+                <b><p class="card-text ">{{item.titulo}}</p></b>
+                <p class="card-text text-success"> $ {{item.precio}}</p>
+                <p class="card-text text-purple mb-2">{{item.descripcion}}</p>
+                <div class=" d-flex flex-row-reverse">
+                    <button (click)="addToCart(item)" class="btn btn-primary mx-1">
+                        <i class="fa fa-shopping-cart"> Agregar</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-deck mt-5 ">
+        <div class="card" *ngFor="let item of pantallas2">
+            <img src="{{item.src}}" class="card-img-top " alt="... ">
+            <div class="card-body ">
+                <b><p class="card-text ">{{item.titulo}}</p></b>
+                <p class="card-text text-success "> $ {{item.precio}}</p>
+                <p class="card-text text-purple mb-2">{{item.descripcion}}</p>
+                <div class=" d-flex flex-row-reverse">
+                    <button (click)="addToCart(item)" class="btn btn-primary">
+                        <i class="fa fa-shopping-cart"> Agregar</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>

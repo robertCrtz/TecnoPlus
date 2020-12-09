@@ -1,1 +1,52 @@
-<p>ensamblaje works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h1 class="text-center">ENSAMBLAJE</h1>
+
+            <form [formGroup]="PCform">
+                <label class="mr-sm-2 mt-1" for="inlineFormCustomSelect">Placa madre</label>
+                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" formControlName="PlacaControl">
+                    <option selected disabled>Elegir</option>
+                    <option [value]="item" *ngFor="let item of motherboards">{{ item.title }} || ${{ item.price }}</option>
+                </select>
+
+                <label class="mr-sm-2 mt-3" for="inlineFormCustomSelect">Procesador</label>
+                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                    <option selected disabled>Elegir</option>
+                    <option [value]="item" *ngFor="let item of procesadores">{{ item.title }} || ${{ item.price }}</option>
+                </select>
+
+                <label class="mr-sm-2 mt-3" for="inlineFormCustomSelect">Memoria RAM</label>
+                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                    <option selected disabled>Elegir</option>
+                    <option [value]="item" *ngFor="let item of RAMs">{{ item.title }} || ${{ item.price }}</option>
+                </select>
+
+                <label class="mr-sm-2 mt-3" for="inlineFormCustomSelect">Almacenamiento</label>
+                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                    <option selected disabled>Elegir</option>
+                    <optgroup label="HDD">
+                        <option [value]="item" *ngFor="let item of HDD">{{ item.title }} || ${{ item.price }}</option>
+                    </optgroup>
+                    <optgroup label="SSD">
+                        <option [value]="item" *ngFor="let item of SSD">{{ item.title }} || ${{ item.price }}</option>
+                    </optgroup>
+                </select>
+
+                <label class="mr-sm-2 mt-3" for="inlineFormCustomSelect">Tarjeta gráfica</label>
+                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                    <option selected disabled>Elegir</option>
+                    <option [value]="item" *ngFor="let item of GPU">{{ item.title }} || ${{ item.price }}</option>
+                </select>
+
+                <button (click)="accederCompra()" class="btn btn-primary mt-4"><i class="fa fa-check"> Comprar ahora</i></button>
+
+            </form>
+        </div>
+
+        <div class="col-4">
+            <img src="../../../../assets/pcGaming.png" width="500">
+        </div>
+
+    </div>
+</div>

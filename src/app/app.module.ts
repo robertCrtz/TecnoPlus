@@ -7,13 +7,12 @@ import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './componentes/home/home.component';
-import { LoginComponent } from './componentes/login/login.component';
-import { RegistroComponent } from './componentes/registro/registro.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegistroComponent } from './auth/registro/registro.component';
 import { ProductoComponent } from './componentes/producto/producto.component';
 
 import { DataService } from './services/data.service';
@@ -30,6 +29,10 @@ import { AlmacenamientoComponent } from './componentes/categorias/almacenamiento
 import { LaptopsComponent } from './componentes/categorias/laptops/laptops.component';
 import { AudifonosComponent } from './componentes/categorias/audifonos/audifonos.component';
 import { EnsamblajeComponent } from './componentes/categorias/ensamblaje/ensamblaje.component';
+import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { SidebarComponent } from './componentes/sidebar/sidebar.component';
+import { FooterComponent } from './componentes/footer/footer.component';
+import { PageNotFoundComponent } from './componentes/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,11 @@ import { EnsamblajeComponent } from './componentes/categorias/ensamblaje/ensambl
     AlmacenamientoComponent,
     LaptopsComponent,
     AudifonosComponent,
-    EnsamblajeComponent
+    EnsamblajeComponent,
+    NavbarComponent,
+    SidebarComponent,
+    FooterComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,8 +67,7 @@ import { EnsamblajeComponent } from './componentes/categorias/ensamblaje/ensambl
     HttpClientModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    SharedModule
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [DataService],
   bootstrap: [AppComponent]
