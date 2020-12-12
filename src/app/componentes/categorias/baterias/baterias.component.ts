@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Productos } from '../../../models/producto.models';
-import { Router } from '@angular/router';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-baterias',
@@ -10,60 +10,52 @@ import { Router } from '@angular/router';
 })
 export class BateriasComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private datos: DataService,) { }
   product: Productos;
-  mostrar = true;
+  collection = {
+    count: 0,
+    data: []
+  };
 
-  baterias: Productos[] = [
-    {
-      id: 1,
-      titulo: 'Pilas AA Recargables por USB Pack 2 und',
-      descripcion: 'Recargable por USB. /Pila recargable AA. /Larga duración. /Ideal para mandos a distancia, teclados etc.',
-      precio: 25.48,
-      src: '../../assets/pilas.jpg'
-    },
-    {
-      id: 2,
-      titulo: 'Gioteck Pack Batería para Xbox One',
-      descripcion: 'Compatible con todos los modelos de mandos de XBOX /Capacidad de Batería de 800mAh',
-      precio: 15.99,
-      src: '../../assets/file.jpg'
-    },
-    {
-      id: 3,
-      titulo: 'Remotto Battery Batería Inalámbrica para DualShock 4',
-      descripcion:'Ergonómica y ligera /Más de 12 horas extra de juego. /Carga un mando en 90 minutos.',
-      precio: 25.69,
-      src:'../../assets/remotto.jpg '
-    },
-  ];
-
-  baterias2: Productos[] = [
-    {
-      id: 1,
-      titulo: 'Ksix Plus Batería Portátil Negra 20000 MAh + Cable Micro-USB',
-      descripcion:'Batería de Li-Polímero 20.000 mAh /Tiene una capacidad de 20.000 mAh, para cargar tu smartphone hasta 8 veces.',
-      precio: 39.65,
-      src: '../../assets/bateria.jpg'
-    },
-    {
-      id: 2,
-      titulo: 'Microsoft Xbox Kit Play & Charge Batería Recargable + Cable USB-C',
-      descripcion: 'Tipo: Kit de carga modular /Plataforma: Xbox One /Marca compatible: Microsoft /Tecnología de conectividad: Alámbrico',
-      precio: 36.52,
-      src: '../../assets/usb-c.jpg '
-    },
-    {
-      id: 3,
-      titulo: 'Batería para Apple Macbook Air 13" A1369 A1405 A1466 A1377',
-      descripcion: 'Compatible: MacBook Air 13" MD760, MacBook Air 13" MD760CH/A, MacBook Air "Core i7" (Mid-2013)',
-      precio: 45.99,
-      src: '../../assets/bateria-para-apple-macbook-ai.jpg'
-    },
-  ];
-
+  collection2 = {
+    count: 0,
+    data: []
+  };
 
   ngOnInit(): void {
+    // cargando todos los productos de firebase
+    this.datos.getBaterias().subscribe(resp => {
+      this.collection.data = resp.map((e: any) => {
+        return {
+          titulo: e.payload.doc.data().titulo,
+          precio: e.payload.doc.data().precio,
+          descripcion: e.payload.doc.data().descripcion,
+          src: e.payload.doc.data().src,
+          idFirebase: e.payload.doc.id
+        };
+      });
+    },
+      error => {
+        console.error(error);
+      }
+    );
+
+    // cargando todos los productos de firebase
+    this.datos.getBaterias2().subscribe(resp => {
+      this.collection2.data = resp.map((e: any) => {
+        return {
+          titulo: e.payload.doc.data().titulo,
+          precio: e.payload.doc.data().precio,
+          descripcion: e.payload.doc.data().descripcion,
+          src: e.payload.doc.data().src,
+          idFirebase: e.payload.doc.id
+        };
+      });
+    },
+      error => {
+        console.error(error);
+      }
+    );
   }
 
   addToCart(item): void {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Productos } from '../../../models/producto.models';
-import { Router } from '@angular/router';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-almacenamiento',
@@ -10,60 +10,52 @@ import { Router } from '@angular/router';
 })
 export class AlmacenamientoComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private datos: DataService,) { }
   product: Productos;
-  mostrar = true;
+  collection = {
+    count: 0,
+    data: []
+  };
 
-  almacenamiento: Productos[] = [
-    {
-      id: 1,
-      titulo: 'Nfortec Alcyon X 256GB SSD M.2 NVMe',
-      descripcion: 'MODELO ALCYON X M.2 NVMe  SSD 512GB /FACTOR DE FORMA M.2 2280 /VELOCIDAD DE LECTURA 3400 MB/s /VELOCIDAD DE ESCRITURA 1950 MB/s',
-      precio: 99.99,
-      src: '../../assets/ssd-m2-nvme.jpg'
-    },
-    {
-      id: 2,
-      titulo: 'Samsung 860 EVO Basic SSD 1TB SATA3',
-      descripcion: 'Capacidad: 1TB /Interfaz: SATA 6Gb / s (compatible con SATA 3Gb / sy SATA 1.5Gb / s) /NAND Tipo: Samsung V-NAND 3bit MLC',
-      precio: 135.99,
-      src: '../../assets/evo860-5.jpg'
-    },
-    {
-      id: 3,
-      titulo: 'Kingston A400 SSD',
-      descripcion:'Disco de estado sólido, capacidad: 240 GB /Velocidad de lectura: 500 MB/s /Velocidad de escritura: 350 MB/s /Componente para: PC/ordenador portátil',
-      precio: 44.99,
-      src:'../../assets/1282720.jpg '
-    },
-  ];
-
-  almacenamiento2: Productos[] = [
-    {
-      id: 1,
-      titulo: 'Samsung 870 QVO SSD',
-      descripcion:'Factor de forma de disco SSD: 2.5" /SDD, capacidad: 1000 GB /Velocidad de lectura: 560 MB/s /Velocidad de escritura: 530 MB/s',
-      precio: 145.99,
-      src: '../../assets/1157-samsung-870.jpg'
-    },
-    {
-      id: 2,
-      titulo: 'Team Group EX2 SSD 2.5" 512GB',
-      descripcion: 'Interfaz SATA Rev. 3.0 (6Gb/s) compatibility to SATA Rev. 2.0 /Read: Up to 550MB/s Max Write: 520MB/s',
-      precio: 79.99,
-      src: '../../assets/team-group-ex2-ssd-.jpg '
-    },
-    {
-      id: 3,
-      titulo: 'WD Red SA500 NAS 4TB SSD 2.5',
-      descripcion: 'Velocidad de transferencia de datos: 6 Gbit/s /Velocidad de lectura: 530 MB/s /Velocidad de escritura: 560 MB/s',
-      precio: 650.45,
-      src: '../../assets/wd-red-sa500.jpg'
-    },
-  ];
-
+  collection2 = {
+    count: 0,
+    data: []
+  };
 
   ngOnInit(): void {
+    // cargando todos los productos de firebase
+    this.datos.getStorages().subscribe(resp => {
+      this.collection.data = resp.map((e: any) => {
+        return {
+          titulo: e.payload.doc.data().titulo,
+          precio: e.payload.doc.data().precio,
+          descripcion: e.payload.doc.data().descripcion,
+          src: e.payload.doc.data().src,
+          idFirebase: e.payload.doc.id
+        };
+      });
+    },
+      error => {
+        console.error(error);
+      }
+    );
+
+    // cargando todos los productos de firebase
+    this.datos.getStorages2().subscribe(resp => {
+      this.collection2.data = resp.map((e: any) => {
+        return {
+          titulo: e.payload.doc.data().titulo,
+          precio: e.payload.doc.data().precio,
+          descripcion: e.payload.doc.data().descripcion,
+          src: e.payload.doc.data().src,
+          idFirebase: e.payload.doc.id
+        };
+      });
+    },
+      error => {
+        console.error(error);
+      }
+    );
   }
 
   addToCart(item): void {

@@ -12,7 +12,6 @@ export class ComprasComponent implements OnInit {
   comprar: FormGroup;
   submitted = false;
 
-
   constructor(private router: Router,
               private FormBuilder: FormBuilder) { }
 
@@ -51,6 +50,4 @@ export class ComprasComponent implements OnInit {
       }
     });
   }
-
-
 }

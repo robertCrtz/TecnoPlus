@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Productos } from '../../../models/producto.models';
 import { Router } from '@angular/router';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-consolas',
@@ -10,60 +11,55 @@ import { Router } from '@angular/router';
 })
 export class ConsolasComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+              private datos: DataService,
+              ) { }
   product: Productos;
-  mostrar = true;
+  collection = {
+    count: 0,
+    data: []
+  };
 
-  consolas: Productos[] = [
-    {
-      id: 1,
-      titulo: 'Microsoft Xbox Series X1TB',
-      descripcion: 'CPU Zen 2 personaliza de 8 núcleos a 3,8 GHz/Almacenamiento interno. SSD NVME personalizado de 1TB',
-      precio: 499.99,
-      src: '../../assets/xboxseriesx.jpg'
-    },
-    {
-      id: 2,
-      titulo: 'Nintendo New 2DS XL Blanca/Naranja',
-      descripcion: 'La consola New Nintendo 2DS XL, con su palanca C y botones ZL/ZR, ofrece opciones de control ampliadas en juegos.',
-      precio: 249.99,
-      src: '../../assets/nintendo.jpg'
-    },
-    {
-      id: 3,
-      titulo: 'Sony PlayStation 5',
-      descripcion:'Disco: SSD de 1TB/Unidad óptica: Ultra HD Blu-Ray/CPU:AMD Ryzen con 8 núcleos y 16 subprocesos, y una frecuencia variable de hasta 3,5 GHz.',
-      precio: 499.99,
-      src:'../../assets/playstation5.jpg '
-    },
-  ];
-
-  consolas2: Productos[] = [
-    {
-      id: 1,
-      titulo: 'Sony PlayStation 4 Slim 500GB',
-      descripcion: 'Disco duro de 500GB/Unidad BD/ DVD/Puerto USB de alta velocidad/(USB 3.0) × 1/Puerto AUX × 1 ',
-      precio: 298.99,
-      src: '../../assets/playstation4.jpg'
-    },
-    {
-      id: 2,
-      titulo: 'Nintendo Switch Azul Neón/Rojo Neón V2',
-      descripcion: 'Pantalla: Táctil capacitiva / LCD 6,2 "/ resolución de 1280x720p/ Memoria: 32 GB',
-      precio: 329.95,
-      src: '../../assets/switch.jpg '
-    },
-    {
-      id: 3,
-      titulo: 'Microsoft Xbox One Consola S 1TB',
-      descripcion: 'HDR (alto rango dinámico)/ 4K Ultra HD/ 40% más pequeña 1 TB de almacenamiento. Alimentación interna.',
-      precio: 298.99,
-      src: '../../assets/xboxone.jpg'
-    },
-  ];
+  collection2 = {
+    count: 0,
+    data: []
+  };
 
 
   ngOnInit(): void {
+    // cargando todos los productos de firebase
+    this.datos.getConsolas().subscribe(resp => {
+      this.collection.data = resp.map((e: any) => {
+        return {
+          titulo: e.payload.doc.data().titulo,
+          precio: e.payload.doc.data().precio,
+          descripcion: e.payload.doc.data().descripcion,
+          src: e.payload.doc.data().src,
+          idFirebase: e.payload.doc.id
+        };
+      });
+    },
+      error => {
+        console.error(error);
+      }
+    );
+
+    // cargando todos los productos de firebase
+    this.datos.getConsolas2().subscribe(resp => {
+      this.collection2.data = resp.map((e: any) => {
+        return {
+          titulo: e.payload.doc.data().titulo,
+          precio: e.payload.doc.data().precio,
+          descripcion: e.payload.doc.data().descripcion,
+          src: e.payload.doc.data().src,
+          idFirebase: e.payload.doc.id
+        };
+      });
+    },
+      error => {
+        console.error(error);
+      }
+    );
   }
 
   addToCart(item): void {

@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './componentes/home/home.component';
 import { RegistroComponent } from './auth/registro/registro.component';
 import { LoginComponent } from './auth/login/login.component';
-import { ProductoComponent } from './componentes/producto/producto.component';
 import { AuthGuard } from './guards/auth.guard';
 import { CartComponent } from './componentes/cart/cart.component';
 import { ComprasComponent } from './componentes/compras/compras.component';
@@ -19,7 +18,7 @@ import { AlmacenamientoComponent } from './componentes/categorias/almacenamiento
 import { LaptopsComponent } from './componentes/categorias/laptops/laptops.component';
 import { AudifonosComponent } from './componentes/categorias/audifonos/audifonos.component';
 import { EnsamblajeComponent } from './componentes/categorias/ensamblaje/ensamblaje.component';
-import { PageNotFoundComponent } from './componentes/page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
@@ -40,7 +39,6 @@ const routes: Routes = [
   { path: 'laptops'  , component: LaptopsComponent },
   { path: 'audifonos'  , component: AudifonosComponent },
   { path: 'ensamblaje'  , component: EnsamblajeComponent },
-  { path: 'producto', component: ProductoComponent },
   { path: '**', component: PageNotFoundComponent}
 ];
 

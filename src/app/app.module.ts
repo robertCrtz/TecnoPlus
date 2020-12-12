@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegistroComponent } from './auth/registro/registro.component';
-import { ProductoComponent } from './componentes/producto/producto.component';
 
 import { DataService } from './services/data.service';
 import { CartComponent } from './componentes/cart/cart.component';
@@ -29,10 +28,10 @@ import { AlmacenamientoComponent } from './componentes/categorias/almacenamiento
 import { LaptopsComponent } from './componentes/categorias/laptops/laptops.component';
 import { AudifonosComponent } from './componentes/categorias/audifonos/audifonos.component';
 import { EnsamblajeComponent } from './componentes/categorias/ensamblaje/ensamblaje.component';
-import { NavbarComponent } from './componentes/navbar/navbar.component';
-import { SidebarComponent } from './componentes/sidebar/sidebar.component';
-import { FooterComponent } from './componentes/footer/footer.component';
-import { PageNotFoundComponent } from './componentes/page-not-found/page-not-found.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +39,6 @@ import { PageNotFoundComponent } from './componentes/page-not-found/page-not-fou
     HomeComponent,
     LoginComponent,
     RegistroComponent,
-    ProductoComponent,
     CartComponent,
     ComprasComponent,
     ConsolasComponent,

@@ -1,4 +1,3 @@
-import { collectExternalReferences } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { AngularFireObject, AngularFireList } from '@angular/fire/database';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, CollectionReference } from '@angular/fire/firestore';
@@ -6,9 +5,7 @@ import { Observable } from 'rxjs';
 import { Subject } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { Productos } from '../models/producto.models';
-import { FileI } from '../models/file.interface';
 import { AngularFireStorage } from '@angular/fire/storage';
-
 
 @Injectable()
 
@@ -21,27 +18,100 @@ export class DataService{
     data: []
   };
 
-  constructor(private firestore: AngularFirestore,
-              private storage: AngularFireStorage) {
+  constructor(private firestore: AngularFirestore) {
     this.DatosCollection = this.firestore.collection<Productos>('productos');
   }
 
-  getProducto(){
+  // CONSOLAS
+  getConsolas(){
+    return this.firestore.collection('consolas').snapshotChanges();
+  }
+  getConsolas2(){
+    return this.firestore.collection('consolas2').snapshotChanges();
+  }
+
+  //PROCESADORES
+  getProcesadores(){
+    return this.firestore.collection('procesadores').snapshotChanges();
+  }
+  getProcesadores2(){
+    return this.firestore.collection('procesadores2').snapshotChanges();
+  }
+
+  //REDES
+  getRedes(){
+    return this.firestore.collection('redes').snapshotChanges();
+  }
+  getRedes2(){
+    return this.firestore.collection('redes2').snapshotChanges();
+  }
+  
+  //PANTALLAS
+  getPantallas(){
+    return this.firestore.collection('pantallas').snapshotChanges();
+  }
+  getPantallas2(){
+    return this.firestore.collection('pantallas2').snapshotChanges();
+  }
+
+ //TECLADOS
+  getTeclados(){
+    return this.firestore.collection('teclados').snapshotChanges();
+  }
+  getTeclados2(){
+    return this.firestore.collection('teclados2').snapshotChanges();
+  }
+  
+  //MOUSES
+  getMouses(){
+    return this.firestore.collection('mouses').snapshotChanges();
+  }
+  getMouses2(){
+    return this.firestore.collection('mouses2').snapshotChanges();
+  }
+
+  //BATERIAS
+  getBaterias(){
+    return this.firestore.collection('baterias').snapshotChanges();
+  }
+  getBaterias2(){
+    return this.firestore.collection('baterias2').snapshotChanges();
+  }
+
+  //STORAGE
+  getStorages(){
+    return this.firestore.collection('storage').snapshotChanges();
+  }
+  getStorages2(){
+    return this.firestore.collection('storage2').snapshotChanges();
+  }
+  
+  //LAPTOPS
+  getLaptops(){
+    return this.firestore.collection('laptops').snapshotChanges();
+  }
+  getLaptops2(){
+    return this.firestore.collection('laptops2').snapshotChanges();
+  }
+
+  //AUDIFONOS
+  getAudifonos(){
+    return this.firestore.collection('audifonos').snapshotChanges();
+  }
+  getAudifonos2(){
+    return this.firestore.collection('audifonos2').snapshotChanges();
+  }
+
+  //PRODUCTOS
+  getProductos(){
     return this.firestore.collection('productos').snapshotChanges();
   }
-
-  createProducto(product: Productos){
-    return this.firestore.collection('productos').add(product);
+  getProductos2(){
+    return this.firestore.collection('productos2').snapshotChanges();
   }
-
-  /**
-   * borrar un producto existente en firebase
-   * @param id id de la coleccion en firebase
-   */
-  deleteProducto(id: any){
-    return this.firestore.collection('productos').doc(id).delete();
+  getProductos3(){
+    return this.firestore.collection('productos3').snapshotChanges();
   }
-
 
   // -------- Agregar producto al carrito --------------
   addToCart(product: Productos): void {

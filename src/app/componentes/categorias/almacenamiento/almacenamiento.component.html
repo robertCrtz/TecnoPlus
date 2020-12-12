@@ -4,7 +4,7 @@
     </div>
 
     <div class="card-deck mt-5 ">
-        <div class="card" *ngFor="let item of almacenamiento">
+        <div class="card" *ngFor="let item of collection.data">
             <img src="{{item.src}}" class="card-img-top " alt="... ">
             <div class="card-body ">
                 <b><p class="card-text ">{{item.titulo}}</p></b>
@@ -20,7 +20,7 @@
     </div>
 
     <div class="card-deck mt-5 ">
-        <div class="card" *ngFor="let item of almacenamiento2">
+        <div class="card" *ngFor="let item of collection2.data">
             <img src="{{item.src}}" class="card-img-top " alt="... ">
             <div class="card-body ">
                 <b><p class="card-text ">{{item.titulo}}</p></b>

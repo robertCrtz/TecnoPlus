@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { Productos } from '../../../models/producto.models';
-import { Router } from '@angular/router';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-pantallas',
@@ -10,60 +10,52 @@ import { Router } from '@angular/router';
 })
 export class PantallasComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private datos: DataService,) { }
   product: Productos;
-  mostrar = true;
+  collection = {
+    count: 0,
+    data: []
+  };
 
-  pantallas: Productos[] = [
-    {
-      id: 1,
-      titulo: 'Samsung UE43TU7172 43" LED UltraHD 4K',
-      descripcion: 'Diagonal de la pantalla: 109,2 cm (43") /Tipo HD: 4K Ultra HD /Tecnología de visualización: LED /Forma de la pantalla: Plana',
-      precio: 411.99,
-      src: '../../assets/samsung4k.jpg'
-    },
-    {
-      id: 2,
-      titulo: 'Samsung UE55TU7025KXXC 55" Crystal UltraHD 4K HDR10+',
-      descripcion: 'Display: Crystal UHD /Resolución 4K /Pulgadas: 55" (138 cm) /Imagen: Procesador Crystal UHD /Audio: Dolby Digital Plus, Salida de sonido 20W',
-      precio: 543.80,
-      src: '../../assets/Crystal.jpg'
-    },
-    {
-      id: 3,
-      titulo: 'Samsung QE50Q60TAU 50" QLED UltraHD 4K',
-      descripcion:'Diagonal de la pantalla: 127 cm (50") /Tipo HD: 4K Ultra HD /Tecnología de visualización: QLED /Forma de la pantalla: Plana /3D: No',
-      precio: 759.99,
-      src:'../../assets/samsung-4k.jpg '
-    },
-  ];
-
-  pantallas2: Productos[] = [
-    {
-      id: 1,
-      titulo: 'LG 65NANO866NA 65" Nanocell UltraHD',
-      descripcion:'Diagonal de la pantalla: 165,1 cm (65") /Tipo HD: 4K Ultra HD /Tecnología de visualización: NanoCell / Forma de la pantalla: Plana ',
-      precio: 1090.99,
-      src: '../../assets/lg.jpg'
-    },
-    {
-      id: 2,
-      titulo: 'LG 55UN74003LB 55" LED UltraHD 4K',
-      descripcion: 'Diagonal de la pantalla: 139,7 cm (55") /Tipo HD: 4K Ultra HD /Relación de aspecto nativa: 16:9 /Tecnología de visualización: LED /Tipo de sintonizador: Digital',
-      precio: 619.99,
-      src: '../../assets/lg2.jpg '
-    },
-    {
-      id: 3,
-      titulo: 'LG 55SM9800PLA 55" LED IPS UltraHD 4K Reacondicionado',
-      descripcion: 'Diagonal de la pantalla: 139,7 cm (55") /Tipo HD: 4K Ultra HD /Resolución de la pantalla: 3840 x 2160 Pixeles /Forma de la pantalla: Plana',
-      precio: 1175.55,
-      src: '../../assets/lg3.jpg'
-    },
-  ];
-
+  collection2 = {
+    count: 0,
+    data: []
+  };
 
   ngOnInit(): void {
+    // cargando todos los productos de firebase
+    this.datos.getPantallas().subscribe(resp => {
+      this.collection.data = resp.map((e: any) => {
+        return {
+          titulo: e.payload.doc.data().titulo,
+          precio: e.payload.doc.data().precio,
+          descripcion: e.payload.doc.data().descripcion,
+          src: e.payload.doc.data().src,
+          idFirebase: e.payload.doc.id
+        };
+      });
+    },
+      error => {
+        console.error(error);
+      }
+    );
+
+    // cargando todos los productos de firebase
+    this.datos.getPantallas2().subscribe(resp => {
+      this.collection2.data = resp.map((e: any) => {
+        return {
+          titulo: e.payload.doc.data().titulo,
+          precio: e.payload.doc.data().precio,
+          descripcion: e.payload.doc.data().descripcion,
+          src: e.payload.doc.data().src,
+          idFirebase: e.payload.doc.id
+        };
+      });
+    },
+      error => {
+        console.error(error);
+      }
+    );
   }
 
   addToCart(item): void {
